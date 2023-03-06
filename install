@@ -1,0 +1,16 @@
+#/bin/sh
+sudo apt install shadowsocks-libev
+cp ./config.json /etc/shadowsocks-libev/
+
+wget https://github.com/shadowsocks/v2ray-plugin/releases/download/v1.3.2/v2ray-plugin-linux-amd64-v1.3.2.tar.gz
+tar -zxvf tar -zxvf v2ray-plugin-linux-amd64-v1.3.2.tar.gz
+mv v2ray-plugin_linux_amd64 /usr/bin/
+
+wget https://cdn.jsdelivr.net/gh/petronny/gfwlist2pac@master/gfwlist.pac
+mv ./gfwlist.pac /etc/shadowsocks-libev/
+cp ./pac-server /usr/bin/
+cp ss-local.service /etc/systemd/system/multi-user.target.wants/
+cp pac-server.service /etc/systemd/system/multi-user.target.wants/
+
+
+

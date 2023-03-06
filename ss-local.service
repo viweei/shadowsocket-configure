@@ -1,0 +1,8 @@
+[Unit]
+Description=Shadowsocks-Libev sslocal
+After=network-online.target
+[Service]
+Type=simple
+ExecStart=/usr/bin/ss-local -c /etc/shadowsocks-libev/config.json
+[Install]
+WantedBy=multi-user.target

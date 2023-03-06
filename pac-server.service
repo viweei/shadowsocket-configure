@@ -1,0 +1,8 @@
+[Unit]
+Description=PAC file Server
+After=ss-local.target
+[Service]
+Type=simple
+ExecStart=/usr/bin/pac-server
+[Install]
+WantedBy=multi-user.target

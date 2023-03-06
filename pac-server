@@ -1,0 +1,23 @@
+#! /usr/bin/python3
+import sys
+from http.server import HTTPServer, BaseHTTPRequestHandler
+
+host =('0.0.0.0', 1081)
+path="/etc/shadowsocks-libev/gfwlist.pac"
+
+if len(sys.argv) >= 2:
+    path = sys.argv[1]
+
+with open(path, "r") as fp:
+    pac = fp.read()
+
+class Request(BaseHTTPRequestHandler):
+    def do_GET(self):
+        self.send_response(200)
+        self.send_header('Content-type','text/plain')
+        self.end_headers()
+        self.wfile.write(pac.encode("utf-8"))
+
+if __name__ == '__main__':
+    server = HTTPServer(host, Request)
+    server.serve_forever()
